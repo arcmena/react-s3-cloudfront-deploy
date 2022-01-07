@@ -32,3 +32,6 @@ jobs:
         
       - name: Deploy app build to S3 bucket
         run: aws s3 sync ./build/ s3://react-s3-cloudfront-deploy --delete
+        
+      - name: Invalidating cloudfrond distribution to get fresh s3 cache
+        run: aws cloudfront create-invalidation --distribution-id=E3OVMRPZD3UEAM --paths /
